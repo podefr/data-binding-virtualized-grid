@@ -81,12 +81,29 @@ seam.apply(view);
 ```
 
 ```js
-function getInitDataBindingPlugin(store) {
-	return new DataBindingPlugin(store, {
-		formatDate: function (timestamp) {
-			this.innerHTML = new Date(timestamp).toISOString();
-		}
-	});
+function getInitStore() {
+	var data = [];
+
+	function pick(array) {
+		return array[Math.floor(Math.random() * array.length)]
+	}
+
+	for (var i=0; i<=1000000; i++) {
+		data.push({
+			"id" : i,
+			"continent": pick(["North America", "Europe", "South America", "Africa", "Antartica", "Australia", "Asia"]),
+			"color": pick(["yellow", "red", "lightblue"]),
+			"quantity1": Math.floor(Math.random() * 100000),
+			"quantity2": Math.floor(Math.random() * 100000),
+			"quantity3": Math.floor(Math.random() * 100000),
+			"quantity4": Math.floor(Math.random() * 100000),
+			"date": (new Date().getTime()),
+			"fruit": pick(["banana", "apple", "pear"]),
+			"name": pick(["olivier", "pierre", "lucien"])
+		});
+	}
+
+	return new Store(data);
 }
 ```
 
