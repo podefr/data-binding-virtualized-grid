@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Seam virtualized grid</title>
+		<meta name="description" content="A demonstration of a virtualized grid using Seam's data-binding plugin">
+		<meta name="viewport" content="width=device-width,initial-scale=1">
+		<link href="css/main.css" rel="stylesheet">
+	</head>
+	<body>
+		<div class="page">
+
+			<h1><a href="https://github.com/podefr/data-binding-virtualized-grid">https://github.com/podefr/data-binding-virtualised-grid</a> 1,000,000 rows</h1>
+
+			<div class="container">
+				<table>
+					<thead>
+						<tr>
+							<td>#ID</td>
+							<td>Continent</td>
+							<td>Color</td>
+							<td>Quantity</td>
+							<td>Quantity</td>
+							<td>Quantity</td>
+							<td>Quantity</td>
+							<td>Date</td>
+							<td>fruit</td>
+							<td>name</td>
+						</tr>
+					</thead>
+					<tbody data-model="foreach: list,0,20">
+						<tr>
+							<td data-model="bind: innerHTML, id"></td>
+							<td data-model="bind: innerHTML, continent"></td>
+							<td data-model="bind: innerHTML, color"></td>
+							<td data-model="bind: innerHTML, quantity1"></td>
+							<td data-model="bind: innerHTML, quantity2"></td>
+							<td data-model="bind: innerHTML, quantity3"></td>
+							<td data-model="bind: innerHTML, quantity4"></td>
+							<td data-model="bind: formatDate, date"></td>
+							<td data-model="bind: innerHTML, fruit"></td>
+							<td data-model="bind: innerHTML, name"></td>
+						</tr>
+					</tbody>
+				</table>
+				<div class="container-virtual-area"></div>
+			</div>
+
+
+		</div>
+		<script src="build.js"></script>
+	</body>
+</html>
