@@ -1,5 +1,4 @@
 (function main() {
-
 	var Store = require("observable-store"),
 		Seam = require("Seam"),
 		DataBindingPlugin = require("data-binding-plugin");
