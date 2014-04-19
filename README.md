@@ -1,11 +1,9 @@
 ##An example of a virtualized Grid using Seam's data binding plugin
 
-Demo page : http://podefr.github.io/olives-virtualised-grid/
+Demo page : clone and open index.html, demo page on github is coming
 
 
-This is a simple example of an application using the virtualisation feature of the data-binding plugin.
-
-It's based on Emily, Olives, and require.js for loading each module.
+This is a simple example of an application using the virtualization feature of Seam's data-binding plugin.
 
 ### The html for generating the grid
 
@@ -66,19 +64,48 @@ for (; i<=1000000; i++) {
 Most of the cells are assigned the value via the innerHTML property, but the data has it's own formatter which is shown here
 
 ```js
-var list = new OObject(new Store(data));
+// The view we want to attach behavior to
+var view = document.querySelector(".container");
 
-var bind = new Bind(list.model, {
-	// formatDate is executed after the row was created
-	formatDate: function (timestamp) {
-		this.innerHTML = new Date(timestamp).toISOString();
-	}
-});
+// Create the observable-store with 1M items
+var store = getInitStore();
 
-list.plugins.addAll({
-	// Add data binding to the view
-	"model": bind
-});
+// Create the data-binding plugin with the new store
+var bindPlugin = getInitDataBindingPlugin(store);
 
-list.alive(view);
+// Create Seam with the data-binding plugin
+var seam = getInitSeam(bindPlugin);
+
+// Apply Seam to the template
+seam.apply(view);
+```
+
+```js
+function getInitDataBindingPlugin(store) {
+	return new DataBindingPlugin(store, {
+		formatDate: function (timestamp) {
+			this.innerHTML = new Date(timestamp).toISOString();
+		}
+	});
+}
+```
+
+```js
+function getInitDataBindingPlugin(store) {
+	return new DataBindingPlugin(store, {
+		formatDate: function (timestamp) {
+			this.innerHTML = new Date(timestamp).toISOString();
+		}
+	});
+}
+```
+
+```js
+function getInitSeam(bindPlugin) {
+	var seam = new Seam();
+	seam.addAll({
+		"model": bindPlugin
+	});
+	return seam;
+}
 ```
